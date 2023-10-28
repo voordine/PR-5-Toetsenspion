@@ -27,15 +27,16 @@ public class MijnLinkedList
         sent = new MijnElement('\0');
     }
 
-    public void VoegIn(MijnElement x, MijnElement y)
+    public void VoegIn(char c, MijnElement y)
     {
-            x.next = y.next;
-            x.prev = y;
-            if (x != sent)
-            {
-                y.next.prev = x;
-                y.next = x;
-            }
+        MijnElement x = new MijnElement(c);
+        x.next = y.next;
+        x.prev = y;
+        if (x != sent)
+        {
+            y.next.prev = x;
+            y.next = x;
+        }
     }
 
     public void Verwijder(MijnElement x)
@@ -58,7 +59,6 @@ public class MijnLinkedList
         if (list.cursor != list.sent.prev)
         { list.cursor = list.cursor.next; }
     }
-
 }
 
 public class hi
@@ -85,7 +85,7 @@ public class hi
                         llist.right(llist);
                         break;
                     default:
-                        //llist.VoegIn(toetsaanslagen[aanslag], llist.cursor);
+                        llist.VoegIn(toetsaanslagen[aanslag], llist.cursor);
                         break;
                 }
             }
