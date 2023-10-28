@@ -56,12 +56,14 @@ public class hi
             string toetsaanslagen = Console.ReadLine();
             MijnLinkedList llist = new MijnLinkedList();
             MijnElement cursor = llist.sent;
+            StringBuilder wachtwoord = new StringBuilder();
             for (int aanslag = 0; aanslag < toetsaanslagen.Length; aanslag++)
             { 
                 switch (toetsaanslagen[aanslag])
                 {
                     case '-':
                         llist.Verwijder(cursor);
+                        cursor = cursor.prev;
                         break;
                     case '<':
                         if (cursor != llist.sent)
@@ -73,11 +75,11 @@ public class hi
                         break;
                     default:
                         llist.VoegIn(toetsaanslagen[aanslag], cursor);
-                        cursor = cursor.next;
+                        if (cursor.next != llist.sent)
+                        { cursor = cursor.next; }
                         break;
                 }
             }
-            StringBuilder wachtwoord = new StringBuilder();
             MijnElement current = llist.sent.next;
             while (current != llist.sent)
             {
