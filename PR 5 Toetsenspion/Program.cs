@@ -63,7 +63,8 @@ public class hi
                 {
                     case '-':
                         llist.Verwijder(cursor);
-                        cursor = cursor.prev;
+                        if (cursor != llist.sent)
+                        { cursor = cursor.prev; }
                         break;
                     case '<':
                         if (cursor != llist.sent)
