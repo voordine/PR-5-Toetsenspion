@@ -29,11 +29,8 @@ public class MijnLinkedList
         MijnElement x = new MijnElement(c);
         x.next = y.next;
         x.prev = y;
-        if (x != sent)
-        {
-            y.next.prev = x;
-            y.next = x;
-        }
+        y.next.prev = x;
+        y.next = x;
     }
 
     public void Verwijder(MijnElement x)
@@ -51,18 +48,18 @@ public class hi
     public static void Main()
     {
         int n = int.Parse(Console.ReadLine());
-        MijnLinkedList llist = new MijnLinkedList();
         int i = 0;
         while (i < n) 
         { 
             string toetsaanslagen = Console.ReadLine();
-            MijnElement cursor = llist.sent.next;
+            MijnLinkedList llist = new MijnLinkedList();
+            MijnElement cursor = llist.sent;
             for (int aanslag = 0; aanslag < toetsaanslagen.Length; aanslag++)
             { 
                 switch (toetsaanslagen[aanslag])
                 {
                     case '-':
-                        llist.Verwijder(cursor.prev);
+                        llist.Verwijder(cursor);
                         break;
                     case '<':
                         if (cursor != llist.sent)
@@ -74,16 +71,11 @@ public class hi
                         break;
                     default:
                         llist.VoegIn(toetsaanslagen[aanslag], cursor);
+                        cursor = cursor.next;
                         break;
                 }
             }
             StringBuilder wachtwoord = new StringBuilder();
-            //MijnElement current = head.next;
-            /*while (current != tail) 
-            { 
-                wachtwoord.Append(current.c);
-                current = current.next;
-            }*/
             Console.WriteLine(wachtwoord);
             i++;
         }
