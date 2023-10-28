@@ -12,15 +12,12 @@ public class MijnElement
     public MijnElement(char c)
     {
         this.data = c;
-        this.next = null;
-        this.prev = null;
     }
 }
 
 public class MijnLinkedList
 {
     public MijnElement sent;
-    public MijnElement cursor;
 
     public MijnLinkedList() 
     { 
@@ -47,18 +44,6 @@ public class MijnLinkedList
             x.next.prev = x.prev;
         }
     }
-
-    public void left(MijnLinkedList list)
-    {
-        if (list.cursor != list.sent.next)
-        { list.cursor = list.cursor.prev; }
-    }
-
-    public void right(MijnLinkedList list)
-    {
-        if (list.cursor != list.sent.prev)
-        { list.cursor = list.cursor.next; }
-    }
 }
 
 public class hi
@@ -71,21 +56,24 @@ public class hi
         while (i < n) 
         { 
             string toetsaanslagen = Console.ReadLine();
+            MijnElement cursor = llist.sent.next;
             for (int aanslag = 0; aanslag < toetsaanslagen.Length; aanslag++)
             { 
                 switch (toetsaanslagen[aanslag])
                 {
                     case '-':
-                        llist.Verwijder(llist.cursor.prev);
+                        llist.Verwijder(cursor.prev);
                         break;
                     case '<':
-                        llist.left(llist);
+                        if (cursor != llist.sent.next)
+                        { cursor = cursor.prev; }
                         break;
                     case '>':
-                        llist.right(llist);
+                        if (cursor != llist.sent.prev)
+                        { cursor = cursor.next; }
                         break;
                     default:
-                        llist.VoegIn(toetsaanslagen[aanslag], llist.cursor);
+                        llist.VoegIn(toetsaanslagen[aanslag], cursor);
                         break;
                 }
             }
