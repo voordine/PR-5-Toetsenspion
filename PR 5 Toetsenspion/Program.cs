@@ -65,11 +65,11 @@ public class hi
                         llist.Verwijder(cursor.prev);
                         break;
                     case '<':
-                        if (cursor != llist.sent.next)
+                        if (cursor != llist.sent)
                         { cursor = cursor.prev; }
                         break;
                     case '>':
-                        if (cursor != llist.sent.prev)
+                        if (cursor.next != llist.sent)
                         { cursor = cursor.next; }
                         break;
                     default:
@@ -77,7 +77,6 @@ public class hi
                         break;
                 }
             }
-
             StringBuilder wachtwoord = new StringBuilder();
             //MijnElement current = head.next;
             /*while (current != tail) 
