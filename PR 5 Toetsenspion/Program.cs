@@ -60,6 +60,7 @@ public class hi
                 {
                     case '-':
                         llist.Verwijder(cursor);
+
                         break;
                     case '<':
                         if (cursor != llist.sent)
@@ -76,7 +77,13 @@ public class hi
                 }
             }
             StringBuilder wachtwoord = new StringBuilder();
-            Console.WriteLine(wachtwoord);
+            MijnElement current = llist.sent.next;
+            while (current != llist.sent)
+            {
+                wachtwoord.Append(current.data);
+                current = current.next;
+            }
+            Console.WriteLine(wachtwoord.ToString());
             i++;
         }
     }
