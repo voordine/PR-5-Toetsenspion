@@ -5,42 +5,42 @@ using System.Text;
 
 public class MijnElement
 {
-    public char c;
+    public char data;
     public MijnElement next;
     public MijnElement prev;
 
-    public MijnElement()
+    public MijnElement(char c)
     {
-        //c;
-        //next;
-        //prev;
+        this.data = c;
+        this.next = null;
+        this.prev = null;
     }
 }
 
 public class MijnLinkedList
 {
-    public MijnElement head;
-    public MijnElement tail;
+    public MijnElement sent;
     public MijnElement cursor;
 
     public MijnLinkedList() 
     { 
-        head = new MijnElement();
-        tail = new MijnElement();
-        cursor = tail;
+        sent = new MijnElement('\0');
     }
 
     public void VoegIn(MijnElement x, MijnElement y)
     {
-        x.next = y.next;
-        x.prev = y;
-        y.next.prev = x;
-        y.next = x;
+            x.next = y.next;
+            x.prev = y;
+            if (x != sent)
+            {
+                y.next.prev = x;
+                y.next = x;
+            }
     }
 
     public void Verwijder(MijnElement x)
     {
-        if (x != head.next)
+        if (x != sent)
         {
             x.prev.next = x.next;
             x.next.prev = x.prev;
@@ -49,13 +49,13 @@ public class MijnLinkedList
 
     public void left(MijnLinkedList list)
     {
-        if (list.cursor != list.head.next)
+        if (list.cursor != list.sent.next)
         { list.cursor = list.cursor.prev; }
     }
 
     public void right(MijnLinkedList list)
     {
-        if (list.cursor != list.tail)
+        if (list.cursor != list.sent.prev)
         { list.cursor = list.cursor.next; }
     }
 
