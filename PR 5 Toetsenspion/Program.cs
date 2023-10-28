@@ -22,6 +22,8 @@ public class MijnLinkedList
     public MijnLinkedList() 
     { 
         sent = new MijnElement('\0');
+        sent.next = sent;
+        sent.prev = sent;
     }
 
     public void VoegIn(char c, MijnElement y)
@@ -60,7 +62,6 @@ public class hi
                 {
                     case '-':
                         llist.Verwijder(cursor);
-
                         break;
                     case '<':
                         if (cursor != llist.sent)
